@@ -10,7 +10,7 @@ $ ld boot0.out -o boot0.bin --oformat binary --Ttext 0x7c00
 $ as boot1.asm -o boot1.out
 $ ld boot1.out -o boot1.bin --oformat binary --Ttext 0x500 -e main
 
-#### Chainging to 'Virtual Floppy Disk'
+#### Chaining to 'Virtual Floppy Disk'
 $ cp boot0.bin boot.vfd
 $ dd if=boot1.bin of=boot.vfd bs=512 count=1 seek=1
 $ dd if=/dev/zero of=boot.vfd bs=512 count=2878 seek=2
