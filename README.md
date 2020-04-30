@@ -21,4 +21,4 @@ to build as ELF for debugging with gdb omit the `--oformat binary` argument and 
 
 ### Running
 
- qemu-system-x86_64 -fda boot.vfd  
+    qemu-system-x86_64 -fda boot.vfd  
