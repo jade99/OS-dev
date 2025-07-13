@@ -15,14 +15,25 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <None Include="boot0.asm">
+    <ClCompile Include="src\main.c">
       <Filter>Source Files</Filter>
-    </None>
-    <None Include="boot1.asm">
-      <Filter>Source Files</Filter>
-    </None>
-    <None Include="bootloader.asm">
-      <Filter>Source Files</Filter>
-    </None>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\protocols\efi_simple_text_output_protocol.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\tables\efi_system_table.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\tables\efi_table_header.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\efi_types.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\uefi.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

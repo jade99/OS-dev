@@ -1,0 +1,22 @@
+#pragma once
+
+#include <efi_types.h>
+
+typedef EFI_STATUS
+(EFIAPI* EFI_TEXT_RESET)(
+	struct _EFI_SIMPLE_TEXT_OUTPUT_PROTOCOL* This,
+	BOOLEAN ExtendedValidation
+	);
+
+typedef EFI_STATUS
+(EFIAPI* EFI_TEXT_STRING)(
+	struct _EFI_SIMPLE_TEXT_OUTPUT_PROTOCOL* This,
+	CHAR16* String
+	);
+
+typedef
+struct _EFI_SIMPLE_TEXT_OUTPUT_PROTOCOL
+{
+	EFI_TEXT_RESET	Reset;
+	EFI_TEXT_STRING	OutputString;
+} EFI_SIMPLE_TEXT_OUTPUT_PROTOCOL;

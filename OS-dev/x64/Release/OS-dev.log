@@ -1,3 +1,2 @@
 ﻿  main.c
-LINK : warning LNK4075: ignoring '/INCREMENTAL' due to '/OPT:ICF' specification
   OS-dev.vcxproj -> C:\Users\jade\source\repos\OS-dev\OS-dev\x64\Release\bootx64.efi
