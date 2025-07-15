@@ -6,187 +6,64 @@ INCLUDELIB MSVCRT
 INCLUDELIB OLDNAMES
 
 PUBLIC	main
-EXTRN	__outs:PROC
-EXTRN	__outb:PROC
-EXTRN	__inb:PROC
 pdata	SEGMENT
-$pdata$main DD	imagerel $LN12
-	DD	imagerel $LN12+406
+$pdata$main DD	imagerel $LN5
+	DD	imagerel $LN5+107
 	DD	imagerel $unwind$main
 pdata	ENDS
 _DATA	SEGMENT
-$SG8103	DB	'H', 00H, 'e', 00H, 'l', 00H, 'l', 00H, 'o', 00H, ' ', 00H
+$SG8130	DB	'H', 00H, 'e', 00H, 'l', 00H, 'l', 00H, 'o', 00H, ' ', 00H
 	DB	'W', 00H, 'o', 00H, 'r', 00H, 'l', 00H, 'd', 00H, '!', 00H, 0dH
 	DB	00H, 0aH, 00H, 00H, 00H
-	ORG $+2
-$SG8104	DB	'P', 00H, 'r', 00H, 'o', 00H, 'b', 00H, 'i', 00H, 'n', 00H
-	DB	'g', 00H, ' ', 00H, 'C', 00H, 'O', 00H, 'M', 00H, '1', 00H, ' '
-	DB	00H, 'p', 00H, 'o', 00H, 'r', 00H, 't', 00H, '.', 00H, '.', 00H
-	DB	'.', 00H, 00H, 00H
-	ORG $+6
-$SG8106	DB	' ', 00H, 'F', 00H, 'A', 00H, 'I', 00H, 'L', 00H, 00H, 00H
-	ORG $+4
-$SG8107	DB	'O', 00H, 'K', 00H, 0dH, 00H, 0aH, 00H, 00H, 00H
-	ORG $+6
-$SG8108	DB	'Hello World!', 0dH, 0aH, 00H
 _DATA	ENDS
 xdata	SEGMENT
-$unwind$main DD	031001H
-	DD	0700c8210H
-	DD	0600bH
+$unwind$main DD	010e01H
+	DD	0420eH
 xdata	ENDS
 ; Function compile flags: /Odtpy
 _TEXT	SEGMENT
-lcr$ = 32
-lsr$1 = 33
-byte$ = 34
-tv133 = 36
-string$ = 40
-ImageHandle$ = 96
-SystemTable$ = 104
+ImageHandle$ = 48
+SystemTable$ = 56
 main	PROC
 ; File H:\source\OS-dev\src\main.c
-; Line 9
-$LN12:
+; Line 5
+$LN5:
 	mov	QWORD PTR [rsp+16], rdx
 	mov	QWORD PTR [rsp+8], rcx
-	push	rsi
-	push	rdi
-	sub	rsp, 72					; 00000048H
-; Line 10
+	sub	rsp, 40					; 00000028H
+; Line 6
 	mov	rax, QWORD PTR SystemTable$[rsp]
 	mov	rax, QWORD PTR [rax+64]
 	xor	edx, edx
 	mov	rcx, QWORD PTR SystemTable$[rsp]
 	mov	rcx, QWORD PTR [rcx+64]
 	call	QWORD PTR [rax]
-; Line 11
+; Line 7
 	mov	rax, QWORD PTR SystemTable$[rsp]
 	mov	rax, QWORD PTR [rax+64]
-	lea	rdx, OFFSET FLAT:$SG8103
+	mov	edx, 2
 	mov	rcx, QWORD PTR SystemTable$[rsp]
 	mov	rcx, QWORD PTR [rcx+64]
-	call	QWORD PTR [rax+8]
-; Line 13
+	call	QWORD PTR [rax+40]
+; Line 8
 	mov	rax, QWORD PTR SystemTable$[rsp]
 	mov	rax, QWORD PTR [rax+64]
-	lea	rdx, OFFSET FLAT:$SG8104
-	mov	rcx, QWORD PTR SystemTable$[rsp]
-	mov	rcx, QWORD PTR [rcx+64]
-	call	QWORD PTR [rax+8]
-; Line 14
-	mov	dl, 65					; 00000041H
-	mov	cx, 1023				; 000003ffH
-	call	__outb
-; Line 16
-	mov	cx, 1023				; 000003ffH
-	call	__inb
-	mov	BYTE PTR byte$[rsp], al
-; Line 18
-	movzx	eax, BYTE PTR byte$[rsp]
-	cmp	eax, 65					; 00000041H
-	je	SHORT $LN8@main
-; Line 20
-	mov	rax, QWORD PTR SystemTable$[rsp]
-	mov	rax, QWORD PTR [rax+64]
-	lea	rdx, OFFSET FLAT:$SG8106
+	lea	rdx, OFFSET FLAT:$SG8130
 	mov	rcx, QWORD PTR SystemTable$[rsp]
 	mov	rcx, QWORD PTR [rcx+64]
 	call	QWORD PTR [rax+8]
 	npad	1
 $LN2@main:
-; Line 21
+; Line 10
 	xor	eax, eax
 	cmp	eax, 1
 	je	SHORT $LN3@main
 	jmp	SHORT $LN2@main
 $LN3@main:
-; Line 22
-	mov	eax, 1
-	jmp	$LN1@main
-$LN8@main:
-; Line 25
-	mov	rax, QWORD PTR SystemTable$[rsp]
-	mov	rax, QWORD PTR [rax+64]
-	lea	rdx, OFFSET FLAT:$SG8107
-	mov	rcx, QWORD PTR SystemTable$[rsp]
-	mov	rcx, QWORD PTR [rcx+64]
-	call	QWORD PTR [rax+8]
-; Line 28
-	mov	cx, 1019				; 000003fbH
-	call	__inb
-	mov	BYTE PTR lcr$[rsp], al
-; Line 29
-	movzx	eax, BYTE PTR lcr$[rsp]
-	test	eax, eax
-	jne	SHORT $LN10@main
+; Line 12
 	xor	eax, eax
-	cmp	eax, 128				; 00000080H
-	jne	SHORT $LN10@main
-	mov	DWORD PTR tv133[rsp], 0
-	jmp	SHORT $LN11@main
-$LN10@main:
-	mov	DWORD PTR tv133[rsp], 1
-$LN11@main:
-	movzx	edx, BYTE PTR tv133[rsp]
-	mov	cx, 1019				; 000003fbH
-	call	__outb
-; Line 30
-	mov	dl, 1
-	mov	cx, 1016				; 000003f8H
-	call	__outb
-; Line 31
-	xor	edx, edx
-	mov	cx, 1017				; 000003f9H
-	call	__outb
-; Line 32
-	movzx	edx, BYTE PTR lcr$[rsp]
-	mov	cx, 1019				; 000003fbH
-	call	__outb
-; Line 34
-	lea	rax, QWORD PTR string$[rsp]
-	lea	rcx, OFFSET FLAT:$SG8108
-	mov	rdi, rax
-	mov	rsi, rcx
-	mov	ecx, 15
-	rep movsb
-$LN4@main:
-; Line 35
-	xor	eax, eax
-	cmp	eax, 1
-	je	SHORT $LN5@main
-; Line 37
-	mov	cx, 1021				; 000003fdH
-	call	__inb
-	mov	BYTE PTR lsr$1[rsp], al
-$LN6@main:
-; Line 38
-	movzx	eax, BYTE PTR lsr$1[rsp]
-	and	eax, 32					; 00000020H
-	test	eax, eax
-	je	SHORT $LN7@main
-; Line 40
-	mov	r8d, 15
-	lea	rdx, QWORD PTR string$[rsp]
-	mov	cx, 1016				; 000003f8H
-	call	__outs
-; Line 41
-	mov	cx, 1021				; 000003fdH
-	call	__inb
-	mov	BYTE PTR lsr$1[rsp], al
-; Line 42
-	jmp	SHORT $LN6@main
-$LN7@main:
-; Line 43
-	jmp	SHORT $LN4@main
-$LN5@main:
-; Line 45
-	xor	eax, eax
-$LN1@main:
-; Line 46
-	add	rsp, 72					; 00000048H
-	pop	rdi
-	pop	rsi
+; Line 13
+	add	rsp, 40					; 00000028H
 	ret	0
 main	ENDP
 _TEXT	ENDS

@@ -41,6 +41,12 @@
     <ClInclude Include="include\asm\io.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\protocols\efi_simple_text_input_protocol.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\tables\services\efi_runtime_services.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <MASM Include="src\asm\strops.asm">

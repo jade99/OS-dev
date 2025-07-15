@@ -24,10 +24,12 @@
   <ItemGroup>
     <ClInclude Include="include\asm\io.h" />
     <ClInclude Include="include\asm\strops.h" />
+    <ClInclude Include="include\protocols\efi_simple_text_input_protocol.h" />
     <ClInclude Include="include\protocols\efi_simple_text_output_protocol.h" />
     <ClInclude Include="include\tables\efi_system_table.h" />
     <ClInclude Include="include\tables\efi_table_header.h" />
     <ClInclude Include="include\efi_types.h" />
+    <ClInclude Include="include\tables\services\efi_runtime_services.h" />
     <ClInclude Include="include\uefi.h" />
   </ItemGroup>
   <ItemGroup>
