@@ -35,5 +35,19 @@
     <ClInclude Include="include\uefi.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\asm\strops.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\asm\io.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <MASM Include="src\asm\strops.asm">
+      <Filter>Source Files</Filter>
+    </MASM>
+    <MASM Include="src\asm\io.asm">
+      <Filter>Source Files</Filter>
+    </MASM>
   </ItemGroup>
 </Project>

@@ -1,3 +1,4 @@
-﻿  main.c
-main.obj : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/OPT:ICF' specification
-  OS-dev.vcxproj -> C:\Users\jade\source\repos\OS-dev\OS-dev\x64\Debug\bootx64.efi
+﻿  Assembling src\asm\strops.asm...
+  main.c
+main.obj : warning LNK4075: /EDITANDCONTINUE wird aufgrund der Angabe von /OPT:ICF ignoriert.
+  OS-dev.vcxproj -> H:\source\OS-dev\x64\Debug\bootx64.efi

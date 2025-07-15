@@ -22,11 +22,22 @@
     <ClCompile Include="src\main.c" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="include\asm\io.h" />
+    <ClInclude Include="include\asm\strops.h" />
     <ClInclude Include="include\protocols\efi_simple_text_output_protocol.h" />
     <ClInclude Include="include\tables\efi_system_table.h" />
     <ClInclude Include="include\tables\efi_table_header.h" />
     <ClInclude Include="include\efi_types.h" />
     <ClInclude Include="include\uefi.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <MASM Include="src\asm\io.asm" />
+    <MASM Include="src\asm\strops.asm">
+      <GenerateDebugInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</GenerateDebugInformation>
+      <GenerateDebugInformation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</GenerateDebugInformation>
+      <GenerateDebugInformation Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</GenerateDebugInformation>
+      <GenerateDebugInformation Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</GenerateDebugInformation>
+    </MASM>
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
@@ -114,6 +125,7 @@
       <CompileAs>CompileAsC</CompileAs>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <AdditionalIncludeDirectories>$(ProjectDir)\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerOutput>AssemblyCode</AssemblerOutput>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -125,6 +137,9 @@
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
       <DataExecutionPrevention>false</DataExecutionPrevention>
     </Link>
+    <MASM>
+      <UseSafeExceptionHandlers>false</UseSafeExceptionHandlers>
+    </MASM>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -138,6 +153,7 @@
       <CompileAs>CompileAsC</CompileAs>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <AdditionalIncludeDirectories>$(ProjectDir)\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerOutput>AssemblyCode</AssemblerOutput>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -149,6 +165,9 @@
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
       <DataExecutionPrevention>false</DataExecutionPrevention>
     </Link>
+    <MASM>
+      <UseSafeExceptionHandlers>false</UseSafeExceptionHandlers>
+    </MASM>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -163,6 +182,7 @@
       <DisableLanguageExtensions>false</DisableLanguageExtensions>
       <CompileAs>CompileAsC</CompileAs>
       <AdditionalIncludeDirectories>$(ProjectDir)\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerOutput>AssemblyCode</AssemblerOutput>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>false</GenerateDebugInformation>
@@ -175,6 +195,9 @@
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
       <DataExecutionPrevention>false</DataExecutionPrevention>
     </Link>
+    <MASM>
+      <UseSafeExceptionHandlers>false</UseSafeExceptionHandlers>
+    </MASM>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -189,6 +212,7 @@
       <DisableLanguageExtensions>false</DisableLanguageExtensions>
       <CompileAs>CompileAsC</CompileAs>
       <AdditionalIncludeDirectories>$(ProjectDir)\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerOutput>AssemblyCode</AssemblerOutput>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>false</GenerateDebugInformation>
@@ -201,6 +225,9 @@
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
       <DataExecutionPrevention>false</DataExecutionPrevention>
     </Link>
+    <MASM>
+      <UseSafeExceptionHandlers>false</UseSafeExceptionHandlers>
+    </MASM>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
