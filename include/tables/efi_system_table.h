@@ -2,6 +2,7 @@
 
 #include <efi_types.h>
 #include <tables/efi_table_header.h>
+#include <protocols/efi_simple_text_input_protocol.h>
 #include <protocols/efi_simple_text_output_protocol.h>
 
 #define EFI_SYSTEM_TABLE_SIGNATURE 0x5453595320494249
@@ -28,7 +29,10 @@ typedef struct
 	CHAR16*								FirmwareVendor;
 	UINT32								FirmwareRevision;
 	EFI_HANDLE							ConsoleInHandle;
-	VOID*								ConIn;
+	EFI_SIMPLE_TEXT_INPUT_PROTOCOL*		ConIn;
 	EFI_HANDLE							ConsoleOutHandle;
 	EFI_SIMPLE_TEXT_OUTPUT_PROTOCOL*	ConOut;
+	EFI_HANDLE							StdandardErrorHandle;
+	EFI_SIMPLE_TEXT_OUTPUT_PROTOCOL*	StdErr;
+	
 } EFI_SYSTEM_TABLE;
