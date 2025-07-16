@@ -6,16 +6,154 @@
 #define	EFI_RUNTIME_SERVICES_SIGNATURE	0x56524553544e5552
 #define	EFI_RUNTIME_SERVICES_REVISION	EFI_SPECIFICATION_VERSION
 
+#define EFI_TIME_ADJUST_DAYLIGHT	0x01
+#define EFI_TIME_IN_DAYLIGHT		0x02
+#define EFI_UNSPECIFIED_TIMEZONE	0x07FF
+
+#define EFI_OPTIONAL_PTR	0x00000001
+
+#define EFI_VARIABLE_NON_VOLATILE							0x00000001
+#define EFI_VARIABLE_BOOTSERVICE_ACCESS						0x00000002
+#define EFI_VARIABLE_RUNTIME_ACCESS							0x00000004
+#define EFI_VARIABLE_HARDWARE_ERROR_RECORD					0x00000008
+#define EFI_VARIABLE_TIME_BASED_AUTHENTICATED_WRITE_ACCESS	0x00000020
+#define EFI_VARIABLE_APPEND_WRITE							0x00000040
+#define EFI_VARIABLE_ENHANCED_AUTHNTICATED_ACCESS			0x00000080
+
+#define EFI_VARIABLE_AUTHENTICATION_3_CERT_ID_SHA256	1
+
+#define EFI_VARIABLE_AUTHENTICATION_3_TIMESTAMP_TYPE	1
+#define EFI_VARIABLE_AUTHENTICATION_3_NONCE_TYPE		2
+
+/* TMP */
+typedef VOID EFI_MEMORY_DESCRIPTOR;
+
+/*typedef struct
+{
+	EFI_TIME					TimeStamp;
+	WIN_CERTIFICATE_UEFI_GUID	AuthInfo;
+} EFI_VARIABLE_AUTHENTICATION_2;*/
+
+typedef struct
+{
+	UINT8	Version;
+	UINT8	Type;
+	UINT32	MetadataSize;
+	UINT32	Flags;
+} EFI_VARIABLE_AUTHENTICATION_3;
+
+typedef struct
+{
+	UINT32	NonceSize;
+	// UINT8	Nonce[NonceSize];
+} EFI_VARIABLE_AUTHENTICATION_3_NONCE;
+
+typedef struct 
+{
+	UINT8	Type;
+	UINT32	IdSize;
+	// UINT8	Id[IdSize];
+} EFI_VARIABLE_AUTHENTICATION_3_CERT_ID;
+
+typedef struct
+{
+	UINT16	Year;
+	UINT8	Month;
+	UINT8	Day;
+	UINT8	Hour;
+	UINT8	Minute;
+	UINT8	Second;
+	UINT8	Pad1;
+	UINT32	Nanosecond;
+	INT16	TimeZone;
+	UINT8	Daylight;
+	UINT8	Pad2;
+} EFI_TIME;
+
+typedef struct
+{
+	UINT32	Resolution;
+	UINT32	Accuracy;
+	BOOLEAN	SetToZero;
+} EFI_TIME_CAPABILITIES;
+
 typedef EFI_STATUS
-GetVariable(
-	CHAR16* VariableName,
-	EFI_GUID* VendorGuid,
-	UINT32* Attributes,
-	UINTN* DataSize,
-	VOID* Data
-);
+(EFIAPI* EFI_GET_TIME)(
+	EFI_TIME* Time,
+	EFI_TIME_CAPABILITIES* Capabilities
+	);
+
+typedef EFI_STATUS
+(EFIAPI* EFI_SET_TIME)(
+	EFI_TIME* Time
+	);
+
+typedef EFI_STATUS
+(EFIAPI* EFI_GET_WAKEUP_TIME)(
+	BOOLEAN* Enabled,
+	BOOLEAN* Pending,
+	EFI_TIME* Time
+	);
+
+typedef EFI_STATUS
+(EFIAPI* EFI_SET_WAKEUP_TIME)(
+	BOOLEAN Enable,
+	EFI_TIME* Time
+	);
+
+typedef EFI_STATUS
+(EFIAPI* EFI_SET_VIRTUAL_ADDRESS_MAP)(
+	UINTN MemoryMapSize,
+	UINTN DescriptorSize,
+	UINT32 DescriptorVersion,
+	EFI_MEMORY_DESCRIPTOR *VirtualMap
+	);
+
+typedef EFI_STATUS
+(EFIAPI* EFI_CONVERT_POINTER)(
+	UINTN DebugDisposition,
+	VOID** Address
+	);
+
+typedef EFI_STATUS
+(EFIAPI* EFI_GET_VARIABLE)(
+	IN CHAR16		*VariableName,
+	IN EFI_GUID		*VendorGuid,
+	OUT UINT32		*Attributes OPTIONAL,
+	IN OUT UINTN	*DataSize,
+	OUT VOID		*Data OPTIONAL
+	);
+
+typedef EFI_STATUS
+(EFIAPI* EFI_GET_NEXT_VARIABLE_NAME)(
+	IN OUT UINTN	*VariableNameSize,
+	IN OUT CHAR16	*VariableName,
+	IN OUT EFI_GUID	*VendorGuid
+	);
+
+typedef EFI_STATUS
+(EFIAPI* EFI_SET_VARIABLE)(
+	IN CHAR16	*VariableName,
+	IN EFI_GUID	*VendorGuid,
+	IN UINT32	Attributes,
+	IN UINTN	DataSize,
+	IN VOID		*Data
+	);
+
 
 typedef struct
 {
 	EFI_TABLE_HEADER	Hdr;
+
+	/* Time Services */
+	EFI_GET_TIME		GetTime;
+	EFI_SET_TIME		SetTime;
+	EFI_GET_WAKEUP_TIME	GetWakeupTime;
+	EFI_SET_WAKEUP_TIME	SetWakeupTime;
+
+	/* Virtual Memory Services */
+	EFI_SET_VIRTUAL_ADDRESS_MAP	SetVirtualAddressMap;
+	EFI_CONVERT_POINTER			ConvertPointer;
+
+	/* Variable Services */
 } EFI_RUNTIME_SERVICES;

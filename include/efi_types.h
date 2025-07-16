@@ -2,6 +2,10 @@
 
 #define EFIAPI _cdecl
 
+#define IN
+#define OUT
+#define OPTIONAL
+
 #ifdef IA32
 #define EFI_WARN	(0x00 << 24)
 #define PI_WARN		(0x20 << 24)
