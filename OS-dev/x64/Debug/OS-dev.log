@@ -1,4 +1,0 @@
-﻿  Assembling src\asm\strops.asm...
-  main.c
-main.obj : warning LNK4075: /EDITANDCONTINUE wird aufgrund der Angabe von /OPT:ICF ignoriert.
-  OS-dev.vcxproj -> H:\source\OS-dev\x64\Debug\bootx64.efi
